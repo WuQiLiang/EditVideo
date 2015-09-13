@@ -1,8 +1,18 @@
 ﻿<Window x:Class="简易视频编辑器.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <MediaElement HorizontalAlignment="Left" Height="275" Margin="30,34,0,0" VerticalAlignment="Top" Width="466" Source="D:\视频\歌曲 电影MV\音悦台\HD-Just A Dream 中英字幕 (往事越千年制)--音悦Tai.mp4"/>
+        Title="MainWindow" Height="402" Width="535">
+    <Grid Margin="0,0,2,4">
+        <MediaElement Name="MediaElement1" HorizontalAlignment="Left" Margin="22,31,-2,134" Width="505" Source="D:\视频\歌曲 电影MV\音悦台\Let It Go.mp4" LoadedBehavior="Manual"/>
+        <Menu HorizontalAlignment="Left" Height="17" VerticalAlignment="Top" Width="527">
+            <MenuItem Header="文件">
+                <MenuItem Header="打开"/>
+            </MenuItem>
+        </Menu>
+        <Button Content="开始" HorizontalAlignment="Left" Margin="22,245,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.093,-0.895" Click="Button_Click"/>
+        <Button Content="停止" HorizontalAlignment="Left" Margin="194,245,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.093,-0.895" Click="Button_Click_2"/>
+        <Button Content="暂停" HorizontalAlignment="Left" Margin="108,245,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.093,-0.895" Click="Button_Click_1"/>
+        <Slider HorizontalAlignment="Left" Margin="291,246,0,0" VerticalAlignment="Top" Width="163"/>
+
     </Grid>
 </Window>
