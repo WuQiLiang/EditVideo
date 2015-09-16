@@ -1,18 +1,22 @@
 ﻿<Window x:Class="简易视频编辑器.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="466" Width="535">
-    <Grid Margin="0,0,2,0" Height="348" VerticalAlignment="Top">
-        <MediaElement Name="MediaElement1" Source="D:\视频\歌曲 电影MV\音悦台\HD-Just A Dream 中英字幕 (往事越千年制)--音悦Tai.mp4" LoadedBehavior="Manual" Volume="{Binding ElementName=volumeSlider, Path=Value}"  Width="500" Height="281" Margin="10,22,15,45"/>
-        <Menu HorizontalAlignment="Left" Height="17" VerticalAlignment="Top" Width="527">
+        Title="MainWindow" Height="607" Width="849">
+    <Grid Margin="0,0,2,0" Height="347" VerticalAlignment="Top">
+        <MediaElement Name="MediaElement1" Source="D:\视频\歌曲 电影MV\音悦台\HD-Just A Dream 中英字幕 (往事越千年制)--音悦Tai.mp4" LoadedBehavior="Manual" Volume="{Binding ElementName=volumeSlider, Path=Value}" Margin="115,22,122,0" MediaOpened="MediaElement1_MediaOpened"/>
+        <Menu HorizontalAlignment="Left" Height="17" VerticalAlignment="Top" Width="839">
             <MenuItem Header="文件">
-                <MenuItem Header="打开"/>
+                <MenuItem Header="打开" Click="MenuItem_Click"/>
             </MenuItem>
         </Menu>
-        <Button Content="开始" HorizontalAlignment="Left" Margin="21,334,0,-5" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.093,-0.895" Click="Button_Click"/>
-        <Button Content="停止" HorizontalAlignment="Left" Margin="181,334,0,-5" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.093,-0.895" Click="Button_Click_2"/>
-        <Button Content="暂停" HorizontalAlignment="Left" Margin="101,334,0,-5" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.093,-0.895" Click="Button_Click_1"/>
-        <Slider x:Name="volumeSlider" Minimum="0" Maximum="1" Value="0.5" Margin="274,334,15,-19" RenderTransformOrigin="0.89,6.762" Cursor="Arrow"/>
+        <Button Content="播放" HorizontalAlignment="Left" Margin="15,400,0,-71" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.093,-0.895" Click="Button_Click" Name="button"/>
+        <Button Content="停止" HorizontalAlignment="Left" Margin="95,400,0,-71" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.093,-0.895" Click="Button_Click_2"/>
+        <Slider x:Name="volumeSlider" Minimum="0" Maximum="1" Value="0.5" Margin="469,400,15,-85" RenderTransformOrigin="0.89,6.762" Cursor="Arrow"/>
+        <Button Content="后退" HorizontalAlignment="Left" Margin="175,400,0,-71" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.093,-0.895" Click="back_Click"/>
+        <Button Content="快进" HorizontalAlignment="Left" Margin="255,400,0,-71" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.093,-0.895" Click="forward_Click"/>
+        <Label Content="音量" HorizontalAlignment="Left" Height="35" Margin="430,397,0,-85" VerticalAlignment="Top"/>
+        <Label Content="" HorizontalAlignment="Left" Height="25" Margin="744,355,0,-33" VerticalAlignment="Top" Name="totalTime" RenderTransformOrigin="79,0.2" Width="80"/>
+        <Label Content="" HorizontalAlignment="Left" Height="32" Margin="0,363,0,-48" VerticalAlignment="Top" Name="shishiTime"/>
 
     </Grid>
 </Window>
