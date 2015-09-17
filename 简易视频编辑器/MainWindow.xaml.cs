@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 
 namespace 简易视频编辑器
@@ -23,6 +24,25 @@ namespace 简易视频编辑器
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// 视频加载时
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Video_Load(object sender, RoutedEventArgs e)
+        {
+            DispatcherTimer timer = new DispatcherTimer();//定义计时器
+            timer.Interval = TimeSpan.FromMilliseconds(1000);//1秒间隔
+            timer.Tick += (ss,ee)=>
+                {
+                    var ts = MediaElement1.Position;
+                    shishiTime.Content=string.Format("{0:00}:{1:00}:{2:00}",ts.Hours,ts.Minutes,ts.Seconds);//格式化当前视频时间
+                    timeSlider.Value = ts.TotalMilliseconds;//滑块显示当前视频进度 
+
+                };
+                    timer.Start();
+        }
+
 
 
         /// <summary>
@@ -71,6 +91,12 @@ namespace 简易视频编辑器
             button.Content = "播放";
         }
 
+
+        /// <summary>
+        /// 打开视频文件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             //MediaElement1.Source = new Uri(filepath, UriKind.Relative);
@@ -103,9 +129,25 @@ namespace 简易视频编辑器
         /// <param name="e"></param>
         private void MediaElement1_MediaOpened(object sender, RoutedEventArgs e)
         {
-            totalTime.Content = MediaElement1.NaturalDuration;
+
+            var ts = MediaElement1.NaturalDuration.TimeSpan;
+            totalTime.Content=string.Format("{0:00}:{1:00}:{2:00}",ts.Hours,ts.Minutes,ts.Seconds);//格式化当前视频时间
+            timeSlider.Maximum = ts.TotalMilliseconds;
             
         }
+
+        /// <summary>
+        /// 滑块控制视频播放进度
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            var ts = TimeSpan.FromMilliseconds(e.NewValue);
+            MediaElement1.Position = ts;
+        }
+
+
 
     }
 }
