@@ -39,13 +39,10 @@ namespace 简易视频编辑器
                     var ts = MediaElement1.Position;
                     shishiTime.Content=string.Format("{0:00}:{1:00}:{2:00}",ts.Hours,ts.Minutes,ts.Seconds);//格式化当前视频时间
                     timeSlider.Value = ts.TotalMilliseconds;//滑块显示当前视频进度 
-                    timeSlider.ToolTip = string.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);//滑块UI显示当前时间
-
+                    //timeSlider.ToolTip = string.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);//滑块UI显示当前时间  
                 };
                     timer.Start();
         }
-
-
 
         /// <summary>
         /// 视频开始与暂停
