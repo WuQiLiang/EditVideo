@@ -23,6 +23,7 @@ namespace 简易视频编辑器
         public MainWindow()
         {
             InitializeComponent();
+
         }
         /// <summary>
         /// 视频加载时
@@ -38,6 +39,7 @@ namespace 简易视频编辑器
                     var ts = MediaElement1.Position;
                     shishiTime.Content=string.Format("{0:00}:{1:00}:{2:00}",ts.Hours,ts.Minutes,ts.Seconds);//格式化当前视频时间
                     timeSlider.Value = ts.TotalMilliseconds;//滑块显示当前视频进度 
+                    timeSlider.ToolTip = string.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);//滑块UI显示当前时间
 
                 };
                     timer.Start();
@@ -75,8 +77,8 @@ namespace 简易视频编辑器
         private void getVideoName()
         {
             string path = this.MediaElement1.Source.LocalPath;
-            string currentfileName = path.Substring(path.LastIndexOf('\\') + 1);
-            MediaElement1.ToolTip = currentfileName;
+            string fileName = path.Substring(path.LastIndexOf('\\') + 1);
+            MediaElement1.ToolTip = fileName;
         }
 
 
@@ -146,6 +148,22 @@ namespace 简易视频编辑器
             var ts = TimeSpan.FromMilliseconds(e.NewValue);
             MediaElement1.Position = ts;
         }
+
+
+        //private void Grid_KeyUp(object sender, KeyEventArgs e)
+        //{
+        //    Label1.Content = e.Key.ToString();
+        //    if (Keyboard.IsKeyUp(Key.Right))
+        //    {
+        //        MediaElement1.Position = MediaElement1.Position + TimeSpan.FromSeconds(5);
+        //    }
+        //    if (Keyboard.IsKeyUp(Key.Left))
+        //    {
+        //        MediaElement1.Position = MediaElement1.Position - TimeSpan.FromSeconds(5);
+        //    }    
+
+           
+        //}
 
 
 
