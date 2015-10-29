@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,15 +24,15 @@ namespace 简易视频编辑器
         public MainWindow()
         {
             InitializeComponent();
-
         }
         /// <summary>
-        /// 视频加载时
+        /// 视频加载时触发
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Video_Load(object sender, RoutedEventArgs e)
         {
+            
             DispatcherTimer timer = new DispatcherTimer();//定义计时器
             timer.Interval = TimeSpan.FromMilliseconds(1000);//1秒间隔
             timer.Tick += (ss,ee)=>
@@ -74,7 +75,7 @@ namespace 简易视频编辑器
         private void getVideoName()
         {
             string path = this.MediaElement1.Source.LocalPath;
-            string fileName = path.Substring(path.LastIndexOf('\\') + 1);
+            string fileName =path.Substring(path.LastIndexOf('\\') + 1);
             MediaElement1.ToolTip = fileName;
         }
 
@@ -98,7 +99,20 @@ namespace 简易视频编辑器
         /// <param name="e"></param>
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            //MediaElement1.Source = new Uri(filepath, UriKind.Relative);
+            string url = String.Empty;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "选择文件";
+            openFileDialog.Filter = "rmvb文件|*.rmvb|mp4文件|*.mp4|avi文件|*.avi|mkv文件|*.mkv";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+           openFileDialog.DefaultExt = "rmvb";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                url = openFileDialog.FileName;
+                MediaElement1.Source = new Uri(url);
+                MediaElement1.Play();
+            }
+
         }
 
         /// <summary>
@@ -112,7 +126,7 @@ namespace 简易视频编辑器
         }
 
         /// <summary>
-        /// 视频后退
+        /// 视频后退5秒
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
